@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Moq;
+﻿using System.Linq;
 using Ninject;
 using NUnit.Framework;
-
-using AppArch.Tests.Core.Services;
-using AppArch.Domain.Entities;
 using AppArch.Domain.Interfaces;
-using AppArch.Infrastructure.Interfaces;
 using AppArch.Infrastructure.DependecyResolution;
 using AppArch.Tests.Core.DependencyResolution;
 

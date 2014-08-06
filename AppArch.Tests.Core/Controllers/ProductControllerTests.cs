@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Web.Mvc;
 
 using Moq;
 using Ninject;
 using NUnit.Framework;
-using NUnit.Framework.Constraints;
-
 using AppArch.Infrastructure.DependecyResolution;
 using AppArch.Services.Interfaces;
 using AppArch.Tests.Core.DependencyResolution;
@@ -24,7 +19,7 @@ namespace AppArch.Tests.Core.Controllers
     public class ProductControllerTests
     {
         // Ninject kernel
-        private IKernel _ninjectKernel;
+        private readonly IKernel _ninjectKernel;
 
         public ProductControllerTests()
         {
@@ -66,7 +61,7 @@ namespace AppArch.Tests.Core.Controllers
             var categoriesRep = _ninjectKernel.Get<ICategoryRepository>();
             var productsRep = _ninjectKernel.Get<IProductRepository>();
             var beverages = productsRep.GetProducts().Where(p => p.Category.CategoryId == categoryId);
-            var mockProductsRep = Mock.Get<IProductRepository>(productsRep);
+            var mockProductsRep = Mock.Get(productsRep);
             mockProductsRep.Setup(m => m.GetProductsByCategoryId(categoryId)).Returns(beverages.ToList());
             
             var controller = _ninjectKernel.Get<ProductController>();
